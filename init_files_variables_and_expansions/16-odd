@@ -1,2 +1,2 @@
 #!/bin/bash
-awk 'NR%2/!=0'
+nl | tr -d " " | grep "^[0-9]*[13579]" | rev | cut -d$'\t' -f1 | rev
