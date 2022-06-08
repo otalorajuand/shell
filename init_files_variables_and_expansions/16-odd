@@ -1,2 +1,2 @@
 #!/bin/bash
-nl | tr -d " " | grep "^[0-9]*[13579]" | rev | cut -d$'\t' -f1 | rev
+perl -pe 'BEGIN{open($e,">even_lines");open($o,">odd_lines")} $. % 2 ?select $o:select $e;'
