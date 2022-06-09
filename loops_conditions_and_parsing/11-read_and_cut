@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-  In this script we read and cut the /etc/passwd file.
+#In this script we read and cut the /etc/passwd file.
 while read -r p; do
     echo "$p" | cut -d ":" -f 1,3,5
 done < /etc/passwd  
