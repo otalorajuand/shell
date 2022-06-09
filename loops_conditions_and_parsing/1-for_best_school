@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # in this file we print 10 times the word "Best School"
-for i in "Best school" "Best School" "Best School" "Best School" "Best School" "Best School" "Best School" "Best School" "Best School" "Best School"
+for i in "Best School" "Best School" "Best School" "Best School" "Best School" "Best School" "Best School" "Best School" "Best School" "Best School"
 do
    echo "$i"
 done 
