@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#In this script we read and cut the /etc/passwd file.
+while read -r p; do
+    username=$(echo "$p" | cut -d ":" -f 1)
+    passwd=$(echo "$p" | cut -d ":" -f 2)
+    userId=$(echo "$p" | cut -d ":" -f 3)
+    groupid=$(echo "$p" | cut -d ":" -f 4)
+    userIdInfo=$(echo "$p" | cut -d ":" -f 5)
+    homeDirectory=$(echo "$p" | cut -d ":" -f 6)
+    command=$(echo "$p" | cut -d ":" -f 7)
+    echo "The user $username is part of the $groupid gang, lives in $homeDirectory and rides $command. $userId's place is protected by the passcode $passwd, more info about the user here: $userIdInfo"
+done < /etc/passwd  
