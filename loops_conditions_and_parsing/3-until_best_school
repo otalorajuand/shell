@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# in this file we print 10 times the word "Best School"
+i=0
+
+until [ $i -gt 10 ]
+do
+  echo "Best School"
+  ((i++))
+done
