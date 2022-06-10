@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 # In this script we print the word To infinity and beyond indefinitely
 echo $$ > /var/run/myscript.pid
+
+trap "echo I hate the kill command; rm /var/run/myscript.pid" SIGTERM
+trap "echo Y U no love me?!" SIGINT
+trap "rm /var/run/myscript.pid" SIGQUIT
+
 while :
 do
   echo "To infinity and beyond"
-  trap "echo I hate the kill command" SIGTERM
-  trap "echo Y U no love me?!" SIGINT
-  trap "rm /var/run/myscript.pid" SIGQUIT SIGTERM 
+  sleep 2
 done
