@@ -1,28 +1,29 @@
 #!/usr/bin/env bash
-# In this script we print the word To infinity and beyond indefinitely
-. /etc/init.d/functions
+# A script that manages a process of printing
+
+var1=$1
 
 start() {
-    ./manage_my_process
-    echo $$ > /var/run/myscript.pid
+    ./manage_my_process &
+    echo $! > /var/run/myscript.pid
     echo "manage_my_process started" 
 }
 
 stop() {
-    pkill -9 -f manage_my_process
+    pkill -f manage_my_process
     rm /var/run/my_process.pid
     echo "manage_my_process stopped"
 }
 
 restart() {
-    pkill -9 -f manage_my_process
+    pkill -f manage_my_process
     rm /var/run/my_process.pid
     ./manage_my_process
     echo $$ > /var/run/myscript.pid
     echo "manage_my_process restarted""
 }
 
-case "$1" in 
+case $var1 in 
     start)
        start
        ;;
@@ -32,8 +33,8 @@ case "$1" in
     restart)
        restart
        ;;
-    *)
-       echo "Usage: $0 {start|stop|status|restart}"
-esac
+  
+    *) echo "Usage: manage_my_process {start|stop|restart}"
+	;; 
 
-exit 0 
+esac
