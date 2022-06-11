@@ -1,4 +1,4 @@
-#!/usr/bash env
+#!/usr/bin/env bash
 # A script that manages a process with parameters
 
 if [ "$1" == "start" ]
