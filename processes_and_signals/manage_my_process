@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# In this script we print the word To infinity and beyond indefinitely
+while :
+do
+  echo "I am alive!" >> /tmp/my_process
+  sleep 2
+done 

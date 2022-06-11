@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# In this script we print the word To infinity and beyond indefinitely
+. /etc/init.d/functions
+
+start() {
+    ./manage_my_process
+    echo $$ > /var/run/myscript.pid
+    echo "manage_my_process started" 
+}
+
+stop() {
+    pkill -9 -f manage_my_process
+    rm /var/run/my_process.pid
+    echo "manage_my_process stopped"
+}
+
+restart() {
+    pkill -9 -f manage_my_process
+    rm /var/run/my_process.pid
+    ./manage_my_process
+    echo $$ > /var/run/myscript.pid
+    echo "manage_my_process restarted""
+}
+
+case "$1" in 
+    start)
+       start
+       ;;
+    stop)
+       stop
+       ;;
+    restart)
+       restart
+       ;;
+    *)
+       echo "Usage: $0 {start|stop|status|restart}"
+esac
+
+exit 0 
