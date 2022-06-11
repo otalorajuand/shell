@@ -1,40 +1,27 @@
-#!/usr/bin/env bash
-# A script that manages a process of printing
+#!/usr/bash env
+# A script that manages a process with parameters
 
-var1=$1
+if [ "$1" == "start" ]
+then
+  ./manage_my_process &
+  echo $$ > /var/run/my_process.pid
+  echo "manage_my_process started"
 
-start() {
-    ./manage_my_process &
-    echo $! > /var/run/myscript.pid
-    echo "manage_my_process started" 
-}
+elif [ "$1" == "stop" ]
+then
+  kill -f manage_my_process 
+  rm /var/run/my_process.pid
+  echo "manage_my_process stopped"
 
-stop() {
-    pkill -f manage_my_process
-    rm /var/run/my_process.pid
-    echo "manage_my_process stopped"
-}
+elif [ "$1" == "restart" ]
+then
+  kill -f manage_my_process
+  rm /var/run/my_process.pid
+  ./manage_my_process &
+  echo $$ > /var/run/my_process.pid
+  echo "manage_my_process restarted"
 
-restart() {
-    pkill -f manage_my_process
-    rm /var/run/my_process.pid
-    ./manage_my_process
-    echo $$ > /var/run/myscript.pid
-    echo "manage_my_process restarted""
-}
+else
+  echo "Usage: manage_my_process {start|stop|restart}"
+fi
 
-case $var1 in 
-    start)
-       start
-       ;;
-    stop)
-       stop
-       ;;
-    restart)
-       restart
-       ;;
-  
-    *) echo "Usage: manage_my_process {start|stop|restart}"
-	;; 
-
-esac
